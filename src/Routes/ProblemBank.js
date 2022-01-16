@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 //import * as styledComponents from "https://cdn.skypack.dev/styled-components@5.3.3";
 import "../index.css"
 import { AiFillLike } from "react-icons/ai";
-import icons from 'react-icons/lib';
 
 export default function ProblemBank() {
     const [problems, setProblems] = useState([]);
@@ -19,16 +18,10 @@ export default function ProblemBank() {
             }
         }
 
-        console.log("????")
-
         if (option === 0){
             axios.get('/api/list/all', config).then(
-                res => {
-    
+                res => {  
                     setProblems(res.data.problems_list.reverse());
-                    console.log("!!!!")
-                    console.log(res)
-                    console.log(res.data.problems_list);
                 }
             ).catch(
                 err => {
@@ -38,11 +31,7 @@ export default function ProblemBank() {
         }else if (option === 1){
             axios.get('/api/list/all_like', config).then(
                 res => {
-    
                     setProblems(res.data.problems_list);
-                    console.log("!!!!")
-                    console.log(res)
-                    console.log(res.data.problems_list);
                 }
             ).catch(
                 err => {
@@ -54,7 +43,6 @@ export default function ProblemBank() {
     }
 
     useEffect(() => {
-        console.log("-------")
         fetchProblemList();
     }, [likeState, option]);
 
@@ -80,7 +68,6 @@ export default function ProblemBank() {
 
     return (
         <div>
-            {console.log("++++")}
            <div className="navbar">
                 <a href="/">Home</a>
                 <Link to = "/Post">Post a problem</Link>
