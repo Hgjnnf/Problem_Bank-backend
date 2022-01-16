@@ -2,7 +2,7 @@ import './App.css';
 import ProblemBank from './Routes/ProblemBank';
 import Post from './Routes/Post';
 import React from 'react';
-import BrowserRouter from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Routes from "react-router-dom";
 import Route from "react-router-dom";
 import Link from "react-router-dom";
