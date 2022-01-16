@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import useState from 'react'
 import useEffect from 'react'
-import Link from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as styledComponents from "https://cdn.skypack.dev/styled-components@5.3.3";
 import "../index.css"
 import AiFillLike from "react-icons/ai";
