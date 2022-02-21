@@ -17,7 +17,7 @@ const Post = () => {
             }
         }
 
-        axios.post('/api/post', {title, body}, config).then(
+        axios.post('https://problem-bank-backend.herokuapp.com/api/post', {title, body}, config).then(
             res => {
                 alert(`${res.data.message}`);
             }

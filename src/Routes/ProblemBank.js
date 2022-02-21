@@ -19,7 +19,7 @@ export default function ProblemBank() {
         }
 
         if (option === 0){
-            axios.get('/api/list/all', config).then(
+            axios.get('https://problem-bank-backend.herokuapp.com/api/list/all', config).then(
                 res => {  
                     setProblems(res.data.problems_list.reverse());
                 }
