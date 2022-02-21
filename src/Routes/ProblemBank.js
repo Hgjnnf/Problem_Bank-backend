@@ -29,7 +29,7 @@ export default function ProblemBank() {
                 }
             )
         }else if (option === 1){
-            axios.get('/api/list/all_like', config).then(
+            axios.get('https://problem-bank-backend.herokuapp.com/api/list/all_like', config).then(
                 res => {
                     setProblems(res.data.problems_list);
                 }
@@ -55,7 +55,7 @@ export default function ProblemBank() {
             }
         }
         const postId = problem._id;
-        axios.put('/api/updateLike', {postId}, config);           
+        axios.put('https://problem-bank-backend.herokuapp.com/api/updateLike', {postId}, config);           
     }
 
     const changeToRecent = ()=>{
