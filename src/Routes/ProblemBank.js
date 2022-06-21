@@ -2,13 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ProblemCard from './ProblemCard'
 //import * as styledComponents from "https://cdn.skypack.dev/styled-components@5.3.3";
 import "../index.css"
-import { AiFillLike } from "react-icons/ai";
+
 
 export default function ProblemBank() {
     const [problems, setProblems] = useState([]);
-    const [likeState, setLikeState] = useState(false);
     const [option, setOption] = useState(0);
 
     const fetchProblemList = () => {
@@ -44,24 +44,24 @@ export default function ProblemBank() {
 
     useEffect(() => {
         fetchProblemList();
-    }, [likeState, option]);
+    }, [option, problems]);
 
 
-    const addOneLike = (problem)=>{ 
-        setLikeState(!likeState);     
+    const addOneLike = (problem) => { 
         const config = {
             headers: {
                 "Content-Type": "application/json" 
             }
         }
         const postId = problem._id;
-        axios.put('https://problem-bank-backend.herokuapp.com/api/updateLike', {postId}, config);           
+        axios.put('https://problem-bank-backend.herokuapp.com/api/updateLike', {postId}, config);    
+        fetchProblemList();       
     }
 
-    const changeToRecent = ()=>{
+    const changeToRecent = () => {
         setOption(0);
     }
-    const changeToPopular= ()=>{
+    const changeToPopular= () => {
         setOption(1);
     }
 
@@ -75,27 +75,16 @@ export default function ProblemBank() {
             <h2>Problem Bank</h2>
             <div className="container">
                 <div className="sortButton">
-                    <button onClick={changeToRecent} class="sortButtonTag">
+                    <button onClick={changeToRecent} className="sortButtonTag">
                     Recent
                     </button>
-                    <button onClick={changeToPopular} class="sortButtonTag">
+                    <button onClick={changeToPopular} className="sortButtonTag">
                     Popular
                     </button>
                 </div>
                 {problems.map(                  
                     (problem) => {
-                        return (                            
-                            <div className="message-blue">
-                                <p className="message-content">{problem.title}
-                                </p>
-                                <hr />
-                                <p className="message-content message-body">{problem.body}</p>
-                                <hr />
-                                    <button onClick={()=>{addOneLike(problem)}}>
-                                        <AiFillLike />{problem.likeCount}
-                                    </button>
-                            </div>
-                        )
+                        return <ProblemCard key={problem._id} addOneLike={addOneLike} problem={problem} />
                     }
                 )}
             </div>
